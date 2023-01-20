@@ -1,0 +1,31 @@
+<html xmlns="http://www.thymeleaf.org">
+	<head>
+		<link rel="stylesheet" th:href="@{/css/main.css}"/>
+		<meta charset="UTF-8">
+		<title>List de personnes</title>
+	</head>
+	<body>
+		<h2>Liste de personnes</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>age</th>
+					<th>Animal</th>
+					<th>Modification</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="person : ${persons}">
+					<td th:text="${person.lastname}"></td>
+					<td th:text="${person.firstname}"></td>
+					<td th:text="${person.age}"></td>
+					<td><span th:each="al:${person.animals}" th:text="${al.name}"></span></td>
+					<td><a th:href="@{'/person/'+${person.id}}"> Maj</a> <a th:href="@{'/person/delete/'+${person.id}}" onclick="return confirm('ëtes-vous sûr?')">Del</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<button onclick="window.location ='person/create'">ajout d'une personne</button>
+	</body>
+</html>
